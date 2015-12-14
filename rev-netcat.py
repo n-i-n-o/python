@@ -44,12 +44,12 @@ def main():
 	port = args.port
 
 	while True:
-		dead = False
+		quit = False
 		try:
 			s = connect(host, port)
 			print("[*] Connection successful!")
 			while True:
-				dead = wait(s)  # until dead=True, connections persists, hence returning False w/ stdout
+				quit = wait(s)
 			s.close()	
 		except socket.error:
 			pass
